@@ -3,13 +3,13 @@
  */
 
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 #include <string>
 #include "BinaryConverter.h"
 using namespace std;
 
 /*
-Write a Program that reads (cin) decimal Integer numbers (positive only) And Oututs the Binary representation of that number: 0b110
+Write a Program that reads (cin) decimal Integer numbers (positive only) And Outputs the Binary representation of that number: 0b110
 Firstly, implement the function the way we know, with division and modulo.
 Secondly, implement the function using binary operations.
 Tip: Both exercises will be a lot easier, if you output one character at a time!
@@ -19,7 +19,7 @@ int main()
 {
 	while (true)
 	{
-		int intToConvert = getNumberFromPlayer("Enter a number to convert to binary representation: ", 0, INT32_MAX);
+		const int intToConvert = getNumberFromPlayer("Enter a positive integer, in the decimal system, to convert to binary representation: ", 0, INT32_MAX);
 		cout << "You want to convert: " << intToConvert << endl;
 		string result = ConvertDecToBinDivMod(intToConvert);
 		cout << "Binary representation using / and % operators: " << result << endl;
@@ -84,7 +84,7 @@ string ConvertDecToBinBinaryOp(int integerToConvert)
 		integerToConvert >>= 1;
 	}
 
-	std::reverse(bitString.begin(), bitString.end());
+	reverse(bitString.begin(), bitString.end());
 
 	return "0b" + bitString;
 }
