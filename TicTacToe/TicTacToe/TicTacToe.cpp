@@ -16,7 +16,7 @@ int main()
 	initGame();
 
 	int numPlayers = getNumberFromPlayer("Enter Number of Players (1/2): ", minNumberOfPlayers, maxNumberOfPlayers);
-	cout << "You choose " << numPlayers << " number of players" << endl;
+	cout << "Number of players in this game: " << numPlayers << endl;
 
 	while (true)
 	{
@@ -47,7 +47,7 @@ int main()
 			cout << "you chose: " << playerSelection << endl;
 			cout << endl;
 		}
-		else //ai's turn
+		else //AI's turn
 		{
 			bool validInput = false;
 			while (!validInput)
@@ -81,6 +81,16 @@ int main()
 	}
 }
 
+void initGame()
+{
+	cout << GREEN;
+	/* initialize random seed: */
+	srand(time(nullptr));
+
+	cout << "Welcome to Tic-Tac-Toe!\n";
+	cout << "Your objective is to get three in a row.\n";
+}
+
 int getNumberFromPlayer(string instruction, int minSelection, int maxSelection)
 {
 	int playerSelection = -1;
@@ -97,17 +107,6 @@ int getNumberFromPlayer(string instruction, int minSelection, int maxSelection)
 	return playerSelection;
 }
 
-
-void initGame()
-{
-	cout << GREEN;
-	/* initialize random seed: */
-	srand(time(NULL));
-
-	cout << "Welcome to Tic-Tac-Toe!\n";
-	cout << "Your objective is to get three in a row.\n";
-}
-
 bool CalculateWinner(int playerScore, int currentPlayer)
 {
 	//prime numbers used to calculate winner
@@ -119,13 +118,10 @@ bool CalculateWinner(int playerScore, int currentPlayer)
 		2 * 3 * 5, 7 * 11 * 13, 17 * 19 * 23, 2 * 7 * 17, 3 * 11 * 19, 5 * 13 * 23, 2 * 11 * 23, 5 * 11 * 17
 	};
 
-	bool winnerPlayer = false;
-
-	for (int i = 0; i < 8; i++)
+	for (int i : valueField)
 	{
-		if (playerScore % valueField[i] == 0)
+		if (playerScore % i == 0)
 		{
-			winnerPlayer = true;
 			cout << "We have a winner! Player: " << currentPlayer + 1 << endl;
 			return true;
 		}
@@ -137,7 +133,7 @@ bool GameIsDraw(int numberFilledBoxes)
 {
 	if (numberFilledBoxes == 9)
 	{
-		cout << "Game was a draw";
+		cout << "Game was a draw.";
 		return true;
 	}
 	return false;
@@ -151,7 +147,7 @@ void drawPlayingField(char* playField)
 		cout << "|";
 		for (int j = 0; j < 3; j++)
 		{
-			cout << playField[i * 3 + j] << "|";;
+			cout << playField[i * 3 + j] << "|";
 		}
 		cout << endl << "-------" << endl;
 	}
