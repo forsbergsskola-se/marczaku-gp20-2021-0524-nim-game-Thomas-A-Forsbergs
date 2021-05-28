@@ -2,32 +2,24 @@
 #include <random>
 using namespace std;
 
+void MatchesDisplayASCII(int matchesCurrent);
+void NimGame2();
+
 int main() {
 	cout << "Hello World!\n";
+	NimGame2();
 }
 
-static void NimGame2() {
+void NimGame2() {
 	int matchesCurrent = 12;
-	char matchesASCII;
 	int player1MatchesDrawn = 0;
 	int player2MatchesDrawn = 0;
 	//create new random
 
 	cout << "Welcome to a game of Nim, don't draw the last match.\n";
 
-	string MatchesDisplayASCII(int matchesCurrent) {
-		char matchesASCII;
-		matchesASCII = "";
-		for (int i = 0; i < matchesCurrent; i++) {
-			matchesASCII += "|";
-		}
-
-		cout << "Mathces left: " << matchesASCII << "\n";
-		return matchesASCII;
-	}
-
 	while (matchesCurrent > 0)	{
-		matchesASCII = MatchesDisplayASCII(matchesCurrent);
+		MatchesDisplayASCII(matchesCurrent);
 
 		cout << "Player 1, please draw 1, 2 or 3 matches.\n";
 		cin >> player1MatchesDrawn;
@@ -48,4 +40,12 @@ static void NimGame2() {
 			}
 		}
 	}
+}
+
+void MatchesDisplayASCII(int matchesCurrent) {
+	cout << "Matches left: ";
+	for (int i = 0; i < matchesCurrent; i++) {
+		cout << "|";
+	}
+	cout << endl;
 }
